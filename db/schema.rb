@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501190105) do
+ActiveRecord::Schema.define(version: 20170501231444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,20 @@ ActiveRecord::Schema.define(version: 20170501190105) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "container_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "containers", force: :cascade do |t|
+    t.string   "cod"
+    t.integer  "container_type_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["container_type_id"], name: "index_containers_on_container_type_id", using: :btree
+  end
+
   create_table "ships", force: :cascade do |t|
     t.string   "name"
     t.integer  "company_id"
@@ -30,5 +44,6 @@ ActiveRecord::Schema.define(version: 20170501190105) do
     t.index ["company_id"], name: "index_ships_on_company_id", using: :btree
   end
 
+  add_foreign_key "containers", "container_types"
   add_foreign_key "ships", "companies"
 end

@@ -24,3 +24,6 @@ Ship.create ([{name: 'Adrian Maersk', company_id: 1},
 	{name: 'Arthur Maersk', company_id: 1},
 	{name: 'Axel Maersk', company_id: 1}])
 puts "Carga Exitosa de Ships"
+
+ContainerType.create(name: 'Standard')
+ContainerType.create(name: 'HIGH-CUBE')
