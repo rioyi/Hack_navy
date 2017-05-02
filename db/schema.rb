@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502004653) do
+ActiveRecord::Schema.define(version: 20170502080347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bls", force: :cascade do |t|
+    t.string   "cod"
+    t.integer  "travel_id"
+    t.integer  "shipper_id"
+    t.integer  "consignee_id"
+    t.integer  "port_shipment_id"
+    t.integer  "port_landing_id"
+    t.integer  "master_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["consignee_id"], name: "index_bls_on_consignee_id", using: :btree
+    t.index ["master_id"], name: "index_bls_on_master_id", using: :btree
+    t.index ["port_landing_id"], name: "index_bls_on_port_landing_id", using: :btree
+    t.index ["port_shipment_id"], name: "index_bls_on_port_shipment_id", using: :btree
+    t.index ["shipper_id"], name: "index_bls_on_shipper_id", using: :btree
+    t.index ["travel_id"], name: "index_bls_on_travel_id", using: :btree
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -58,7 +76,18 @@ ActiveRecord::Schema.define(version: 20170502004653) do
     t.index ["company_id"], name: "index_ships_on_company_id", using: :btree
   end
 
+  create_table "travels", force: :cascade do |t|
+    t.string   "cod"
+    t.integer  "ship_id"
+    t.date     "docking_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["ship_id"], name: "index_travels_on_ship_id", using: :btree
+  end
+
+  add_foreign_key "bls", "travels"
   add_foreign_key "containers", "container_types"
   add_foreign_key "ports", "countries"
   add_foreign_key "ships", "companies"
+  add_foreign_key "travels", "ships"
 end

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cod: MyString
+  travel: one
+  shipper: one
+  consignee: one
+  port_shipment: one
+  port_landing: one
+  master: one
+
+two:
+  cod: MyString
+  travel: two
+  shipper: two
+  consignee: two
+  port_shipment: two
+  port_landing: two
+  master: two
