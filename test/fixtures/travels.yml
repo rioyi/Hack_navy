@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cod: MyString
+  ship: one
+  docking_date: 2017-05-02
+
+two:
+  cod: MyString
+  ship: two
+  docking_date: 2017-05-02
